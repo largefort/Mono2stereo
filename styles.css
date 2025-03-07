@@ -1,25 +1,130 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    background-color: #0d0d0d;
+    color: #ffffff;
     text-align: center;
-    background-color: #121212;
-    color: white;
-}
-.container {
-    max-width: 400px;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     padding: 20px;
-    background: #1c1c1c;
-    border-radius: 10px;
 }
-input, button {
-    display: block;
+
+/* Main Container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    max-width: 400px;
     width: 100%;
-    margin: 10px 0;
-    padding: 10px;
 }
-button {
-    background: #007BFF;
-    color: white;
+
+/* Headings */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
     border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Primary Button */
+button#loginBtn, button#signupBtn, button#convertBtn {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+}
+
+button#loginBtn:hover, button#signupBtn:hover, button#convertBtn:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+}
+
+/* Logout & Download Buttons */
+button#logoutBtn, button#downloadBtn {
+    background: linear-gradient(135deg, #ff4747, #c82333);
+    color: #fff;
+}
+
+button#logoutBtn:hover, button#downloadBtn:hover {
+    background: linear-gradient(135deg, #c82333, #a71d2a);
+}
+
+/* File Upload Button */
+input[type="file"] {
+    background: transparent;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="file"]:hover {
+    border-color: #007bff;
+}
+
+/* Error Message */
+#error-message {
+    color: #ff4747;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Audio Player */
+audio {
+    margin-top: 20px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+    }
 }
