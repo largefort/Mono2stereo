@@ -5,20 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mono to Stereo Converter</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- FilePond CSS & JS -->
+    <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
+
+    <!-- FilePond Plugins -->
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
 </head>
 <body>
-    <h2>Upload MP3 File</h2>
-    <input type="file" id="audioFile" accept="audio/mp3">
-    <button id="convertBtn">Convert to Stereo</button>
-    <audio id="previewAudio" controls></audio>
-    <button id="downloadBtn" style="display: none;">Download MP3</button>
-    <button id="logoutBtn">Logout</button>
+    <div class="container">
+        <h2>Upload MP3 or WAV File</h2>
 
+        <!-- FilePond File Input -->
+        <input type="file" id="audioFile" accept="audio/mp3, audio/wav">
+
+        <button id="convertBtn">Convert to Stereo</button>
+        <audio id="previewAudio" controls></audio>
+        <button id="downloadBtn" style="display: none;">Download MP3</button>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <!-- Firebase Authentication -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
         import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
-        // Firebase Configuration
+        // Firebase Config
         const firebaseConfig = {
             apiKey: "AIzaSyAhA0T6lUS9pmvUK1GwnCfO-1Q31f5RSv4",
             authDomain: "wolf-cloud-8d38a.firebaseapp.com",
@@ -38,14 +51,15 @@
             signOut(auth).then(() => window.location.href = "index.html");
         });
 
-        // Check Authentication
+        // Restrict access if not logged in
         onAuthStateChanged(auth, (user) => {
             if (!user) {
                 window.location.href = "index.html";
             }
         });
-
     </script>
+
+    <!-- Load Converter Script -->
     <script src="converter.js"></script>
 </body>
 </html>
