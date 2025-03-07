@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolf Cloud - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Wolf Cloud Login</h2>
+        <input type="email" id="email" placeholder="Enter email">
+        <input type="password" id="password" placeholder="Enter password">
+        <button id="loginBtn">Login</button>
+        <button id="signupBtn">Sign Up</button>
+        <p id="error-message"></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAhA0T6lUS9pmvUK1GwnCfO-1Q31f5RSv4",
+            authDomain: "wolf-cloud-8d38a.firebaseapp.com",
+            projectId: "wolf-cloud-8d38a",
+            storageBucket: "wolf-cloud-8d38a.firebasestorage.app",
+            messagingSenderId: "610199843686",
+            appId: "1:610199843686:web:a9ab0792025b1552efcea7",
+            measurementId: "G-DEMGRG0D64"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Login Function
+        document.getElementById("loginBtn").addEventListener("click", () => {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => window.location.href = "dashboard.html")
+                .catch(error => document.getElementById("error-message").innerText = error.message);
+        });
+
+        // Signup Function
+        document.getElementById("signupBtn").addEventListener("click", () => {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => window.location.href = "dashboard.html")
+                .catch(error => document.getElementById("error-message").innerText = error.message);
+        });
+
+        // Check Authentication Status
+        onAuthStateChanged(auth, (user) => {
+            if (user && window.location.pathname.includes("index.html")) {
+                window.location.href = "dashboard.html";
+            }
+        });
+
+    </script>
+</body>
+</html>
